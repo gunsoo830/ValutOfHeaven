@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private string nextScene;
 
+    private sRandom gachaRand;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -14,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //gacha 확률테이블을 생성 (추후에는 UID마다 테이블을 저장해서 사용)
+        gachaRand = new sRandom(100);
+
         MoveToScene(nextScene);
     }
 
@@ -21,4 +26,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(scene);
     }
+
+    public int GetGachaRand() => gachaRand.GetRandom();
 }
