@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -424,7 +424,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1468908401}
   - component: {fileID: 1468908403}
-  - component: {fileID: 1468908402}
   m_Layer: 5
   m_Name: UICamera
   m_TagString: Untagged
@@ -451,14 +450,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!81 &1468908402
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1468908400}
-  m_Enabled: 1
 --- !u!20 &1468908403
 Camera:
   m_ObjectHideFlags: 0
@@ -706,8 +697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad3b772fabfe894587e700f5ff5da39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IntroUI: {fileID: 0}
-  LobbyUI: {fileID: 0}
+  IntroUI: {fileID: 1649904300}
+  LobbyUI: {fileID: 425241386}
 --- !u!4 &2137149972
 Transform:
   m_ObjectHideFlags: 0
