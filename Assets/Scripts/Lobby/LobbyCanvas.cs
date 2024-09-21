@@ -75,9 +75,8 @@ public class LobbyCanvas : MonoBehaviour
         bool isActive = this.imgCurrent.activeInHierarchy;
         if(!isActive)
             this.imgCurrent.SetActive(true);
-        else
-            this.isBottomMenuMove = true;
 
+        this.isBottomMenuMove = true;
         this.bottomMenuMoveDistance = -(this.getRectPosition(this.imgCurrent.gameObject).x - this.getRectPosition(this.buttons[type].gameObject).x);
 
         // set imgCurrent Text.
