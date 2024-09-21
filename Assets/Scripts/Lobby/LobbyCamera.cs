@@ -5,15 +5,21 @@ using UnityEngine.U2D.IK;
 
 public class LobbyCamera : MonoBehaviour
 {
+    public GameObject Canvas;
     public int defaultScreenWidth = 1920;
     public int defaultScreenHeight = 1080;
-    public GameObject canvasPanel;
+
+    private LobbyCanvas lobbyCanvas;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        this.setScreenResolution();
+        if(!!this.Canvas)
+        {
+            this.lobbyCanvas = Canvas.GetComponent<LobbyCanvas>();
+            this.setScreenResolution();
+        }
     }
 
     // Update is called once per frame
@@ -26,14 +32,18 @@ public class LobbyCamera : MonoBehaviour
     {
         Debug.Log("Width : " + Screen.width + " " + "Height : " + Screen.height);
 
-        if(!!canvasPanel)
+        List<GameObject> panelList = this.lobbyCanvas.getPanelList();
+        if(panelList.Count > 0)
         {
-            float ratio = (float)Screen.height / this.defaultScreenHeight;
-            Vector3 resizedScale = canvasPanel.transform.localScale;
-            resizedScale.y = ratio;
-            resizedScale.x = ratio;
+            for(int i=0; i<panelList.Count; i++) 
+            {
+                float ratio = (float)Screen.height / this.defaultScreenHeight;
+                Vector3 resizedScale = panelList[i].transform.localScale;
+                resizedScale.y = ratio;
+                resizedScale.x = ratio;
 
-            canvasPanel.transform.localScale = resizedScale;
+                panelList[i].transform.localScale = resizedScale;
+            }
         }
     }
 }

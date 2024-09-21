@@ -19,6 +19,7 @@ public class LobbyCanvas : MonoBehaviour
     }
 
     public GameObject imgCurrent;
+    public List<GameObject> panels;
     public List<Button> buttons;
     public float bottomMenuMovePerSec = 1;
 
@@ -136,5 +137,10 @@ public class LobbyCanvas : MonoBehaviour
     public void onBattleClick()
     {
 
+    }
+
+    public List<GameObject> getPanelList()
+    {
+        return this.panels;
     }
 }
