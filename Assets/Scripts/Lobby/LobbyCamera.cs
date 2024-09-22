@@ -37,12 +37,15 @@ public class LobbyCamera : MonoBehaviour
         {
             for(int i=0; i<panelList.Count; i++) 
             {
-                float ratio = (float)Screen.height / this.defaultScreenHeight;
-                Vector3 resizedScale = panelList[i].transform.localScale;
-                resizedScale.y = ratio;
-                resizedScale.x = ratio;
+                if (!!panelList[i])
+                {
+                    float ratio = (float)Screen.height / this.defaultScreenHeight;
+                    Vector3 resizedScale = panelList[i].transform.localScale;
+                    resizedScale.y = ratio;
+                    resizedScale.x = ratio;
 
-                panelList[i].transform.localScale = resizedScale;
+                    panelList[i].transform.localScale = resizedScale;
+                }
             }
         }
     }

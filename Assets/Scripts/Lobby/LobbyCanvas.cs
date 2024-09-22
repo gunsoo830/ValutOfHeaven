@@ -8,9 +8,11 @@ using UnityEngine.UI;
 
 public class LobbyCanvas : MonoBehaviour
 {
+    public const int PANEL_COUNT = 7;
+
     // 순서를 지켜야 함.. 이게 맞나
     public enum LobbyBottomButtonType {
-        Shop = 0,
+        Shop = 1,
         Hire,
         Menu,
         ShipBuild,
@@ -127,6 +129,7 @@ public class LobbyCanvas : MonoBehaviour
     public void onShipBuildClick()
     {
 
+        this.panels[(int)LobbyBottomButtonType.ShipBuild].gameObject.SetActive(true);
     }
 
     public void onShipClick()
@@ -137,6 +140,17 @@ public class LobbyCanvas : MonoBehaviour
     public void onBattleClick()
     {
 
+    }
+
+    public void closePopup(LobbyBottomButtonType type)
+    {
+        if (!!this.panels[(int)type])
+        {
+            this.panels[(int)type].SetActive(false);
+            float xpos = this.buttons[0].transform.position.x;
+            this.imgCurrent.transform.position = new Vector3(xpos, this.imgCurrent.transform.position.y);
+            this.imgCurrent.SetActive(false);
+        }
     }
 
     public List<GameObject> getPanelList()
