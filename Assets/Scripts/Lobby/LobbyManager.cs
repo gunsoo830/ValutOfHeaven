@@ -27,7 +27,7 @@ public class LobbyManager : MonoBehaviour
             0,
             7
         );
-        Debug.Log(ExcelParser.getInstance().getDataWithType<string>(ref test, 0, 0));
+        Debug.Log(ExcelParser.getDataWithType<string>(ref test, 0, 0));
     }
 
     // Update is called once per frame

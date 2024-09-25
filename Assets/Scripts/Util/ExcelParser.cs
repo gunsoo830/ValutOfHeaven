@@ -19,6 +19,10 @@ namespace VOHUtil
             instance = new ExcelParser();
             return instance;
         }
+        public static T getDataWithType<T>(ref List<List<string>> excelData, int row, int col)
+        {
+            return (T)Convert.ChangeType(excelData[row][col], typeof(T));
+        }
 
 
         ExcelParser()
@@ -27,7 +31,6 @@ namespace VOHUtil
         }
 
         private string RootPath = "";
-
         public List<List<string>> ParseExcel(string path, int sheetIndex, int startRow, int endRow, int startCol, int endCol)
         {
             return this._parseExcel(path, sheetIndex, startRow, endRow, startCol, endCol);
@@ -70,11 +73,6 @@ namespace VOHUtil
             }
 
             return retVal;
-        }
-
-        public T getDataWithType<T>(ref List<List<string>> excelData, int row, int col)
-        {
-            return (T) Convert.ChangeType(excelData[row][col], typeof(T));
         }
     }
 }
