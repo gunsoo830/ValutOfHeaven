@@ -6,6 +6,7 @@ using UnityEngine.U2D.IK;
 public class LobbyCamera : MonoBehaviour
 {
     public GameObject Canvas;
+    public int defaultPixelPerUnits = 100;
     public int defaultScreenWidth = 1920;
     public int defaultScreenHeight = 1080;
 
@@ -20,6 +21,9 @@ public class LobbyCamera : MonoBehaviour
             this.lobbyCanvas = Canvas.GetComponent<LobbyCanvas>();
             this.setScreenResolution();
         }
+
+        Camera cam = this.GetComponent<Camera>();
+        cam.orthographicSize = (float) defaultScreenHeight / this.defaultPixelPerUnits / 2;
     }
 
     // Update is called once per frame
