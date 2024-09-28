@@ -18,6 +18,7 @@ public class LobbyCanvas : MonoBehaviour
         ShipBuild,
         Ship,
         Battle,
+        ShipArrange,
     }
 
     public GameObject imgCurrent;
