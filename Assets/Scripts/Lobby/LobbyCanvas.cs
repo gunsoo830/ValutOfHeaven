@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -148,10 +146,26 @@ public class LobbyCanvas : MonoBehaviour
         if (!!this.panels[(int)type])
         {
             this.panels[(int)type].SetActive(false);
-            float xpos = this.buttons[0].transform.position.x;
-            this.imgCurrent.transform.position = new Vector3(xpos, this.imgCurrent.transform.position.y);
-            this.imgCurrent.SetActive(false);
+            this.resetImgCurrent();
         }
+    }
+
+    public void closeAllPopup()
+    {
+        for(int i=0; i<this.panels.Count; i++)
+        {
+            if (this.panels[i] != null && i > 0)
+                this.panels[i].SetActive(false);
+        }
+
+        this.resetImgCurrent();
+    }
+
+    private void resetImgCurrent()
+    {
+        float xpos = this.buttons[0].transform.position.x;
+        this.imgCurrent.transform.position = new Vector3(xpos, this.imgCurrent.transform.position.y);
+        this.imgCurrent.SetActive(false);
     }
 
     public List<GameObject> getPanelList()

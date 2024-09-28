@@ -7,12 +7,20 @@ public class PopShipBuildController : MonoBehaviour
 {
 
     public GameObject btnBack;
+    public Button btnFormation;
+    public GameObject pnShipArrange;
+
     // Start is called before the first frame update
     void Start()
     {
         if(!!this.btnBack)
         {
             this.btnBack.GetComponent<Button>().onClick.AddListener(() => this.onBtnBackClick());
+        }
+
+        if(!!this.btnFormation)
+        {
+            this.btnFormation.onClick.AddListener(() => this.onBtnFormationClick());
         }
     }
 
@@ -33,5 +41,10 @@ public class PopShipBuildController : MonoBehaviour
         {
             Debug.LogError("Lobby Canvas is not exist.");
         }
+    }
+
+    private void onBtnFormationClick()
+    {
+        this.pnShipArrange.SetActive(true);
     }
 }

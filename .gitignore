@@ -73,3 +73,7 @@ crashlytics-build.properties
 
 # vscode extensions
 .vscode
+
+# build files
+build
+*.zip
