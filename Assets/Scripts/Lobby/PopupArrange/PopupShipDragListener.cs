@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.U2D.IK;
 
@@ -82,7 +83,7 @@ public class PopupShipDragListener : DragListener
 
         if(hitIndex > -1)
         {
-            this.moveShip();
+            this.moveShip(hitIndex);
         }
         else
         {
@@ -90,8 +91,28 @@ public class PopupShipDragListener : DragListener
         }
     }
 
-    private void moveShip()
+    private void moveShip(int hitIndex)
     {
+        DragObject targetObject = null;
+        for(int i=0; i<this.placeHolders[hitIndex].transform.childCount; i++)
+        {
+            targetObject = this.placeHolders[hitIndex].transform.GetChild(i).GetComponent<DragObject>();
+            if(targetObject)
+                break;
+        }
+
+        if(targetObject)
+        {
+            targetObject.transform.SetParent(this.placeHolders[this.currHolderIndex].transform);
+            targetObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
+            this.currDragObject.transform.SetParent(this.placeHolders[hitIndex].transform);
+            this.currDragObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        }
+        else
+        {
+            this.currDragObject.transform.SetParent(this.placeHolders[hitIndex].transform);
+            this.currDragObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        }
 
     }
     private void resetShip()
