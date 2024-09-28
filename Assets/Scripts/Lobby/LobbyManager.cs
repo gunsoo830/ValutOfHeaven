@@ -20,7 +20,7 @@ public class LobbyManager : MonoBehaviour
         }
 
         List<List<string>> test = ExcelParser.getInstance().ParseExcel(
-            @"\Datasheet\CardData.xlsx",
+            @"/Datasheet/CardData.xlsx",
             0,
             1,
             5,

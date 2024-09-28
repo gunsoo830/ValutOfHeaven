@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3898023976014843497}
   - component: {fileID: 8346018236655071265}
   - component: {fileID: 1020872590384408796}
+  - component: {fileID: 4582201066705624283}
   m_Layer: 5
   m_Name: ShipObject_Small
   m_TagString: Untagged
@@ -78,7 +79,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1020872590384408796}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -120,3 +121,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4582201066705624283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006919747958566057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa28f4e590e8488d84134ef56b0d7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragLayer: {fileID: 0}
