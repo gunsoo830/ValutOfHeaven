@@ -25,7 +25,7 @@ namespace VOHUtil
         }
 
 
-        ExcelParser()
+        private ExcelParser()
         {
             RootPath = Directory.GetCurrentDirectory();
         }

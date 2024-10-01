@@ -62,6 +62,10 @@ namespace VOHModel
             this.weapon = ExcelParser.getDataWithType<string>(ref excelData, 0, 7);
         }
 
+        public int getRow()
+        {
+            return this.row;
+        }
         public string getID()
         {
             return this.id;
