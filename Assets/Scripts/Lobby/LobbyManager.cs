@@ -7,33 +7,39 @@ using VOHUtil;
 
 public class LobbyManager : MonoBehaviour
 {
-    public delegate void onButtonClick();
+    public enum BGM_LIST
+    {
+        LOBBY = 0,
+        BATTLE_STAGE,
+        FREET,
+        COUNT,
+    }
 
-    public GameObject lobbyCanvas;
-    private LobbyCanvas lobbyCanvasController;
+    private SoundManager soundManager;
+    private string[] bgmSourcePath = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(!!lobbyCanvas)
-        {
-            lobbyCanvasController = lobbyCanvas.GetComponent<LobbyCanvas>();
-        }
+        this._initBgmSourcePath();
 
-        List<List<string>> test = ExcelParser.getInstance().ParseExcel(
-            @"/Datasheet/CardData.xlsx",
-            0,
-            1,
-            5,
-            0,
-            7
-        );
-        Debug.Log(ExcelParser.getDataWithType<string>(ref test, 0, 0));
+        this.soundManager = GameObject.FindAnyObjectByType<SoundManager>();
+        if (this.soundManager != null)
+            soundManager.playSound(this.bgmSourcePath[(int)BGM_LIST.LOBBY], SoundManager.SoundType.Bgm, true);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    
+    private void _initBgmSourcePath()
+    {
+        this.bgmSourcePath = new string[(int)BGM_LIST.COUNT];
+
+        this.bgmSourcePath[(int)BGM_LIST.LOBBY] = "Sound/Bgm/Bgm_Lobby";
+        this.bgmSourcePath[(int)BGM_LIST.BATTLE_STAGE] = "Sound/Bgm/Bgm_BattleStage";
+        this.bgmSourcePath[(int)BGM_LIST.FREET] = "Sound/Bgm/Bgm_Freet";
     }
 }

@@ -10,8 +10,6 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(this.name);
-
         // Initialize Data Manager.
         PlayerDataManager.getInstance();
     }
