@@ -20,7 +20,7 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.initSoundObject();
+        
     }
 
     // Update is called once per frame
@@ -42,6 +42,8 @@ public class SoundManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+
+        this.initSoundObject();
     }
 
     private void initSoundObject()
