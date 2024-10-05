@@ -11,12 +11,13 @@ public class LobbyCanvas : MonoBehaviour
     // 순서를 지켜야 함.. 이게 맞나
     public enum LobbyBottomButtonType {
         Shop = 1,
-        Hire,
-        Menu,
-        ShipBuild,
-        Ship,
-        Battle,
-        ShipArrange,
+        Hire = 2,
+        Menu = 3,
+        ShipBuild = 4,
+        Ship = 5,
+        Battle = 6,
+        ShipArrange = 7,
+        BattleStage = 8,
     }
 
     public GameObject imgCurrent;
@@ -141,6 +142,10 @@ public class LobbyCanvas : MonoBehaviour
         this.panels[(int)LobbyBottomButtonType.Battle].gameObject.SetActive(true);
     }
 
+    public void openPopup(LobbyBottomButtonType type)
+    {
+        this.panels[(int)type].gameObject.SetActive(true);
+    }
     public void closePopup(LobbyBottomButtonType type)
     {
         if (!!this.panels[(int)type])
@@ -149,7 +154,6 @@ public class LobbyCanvas : MonoBehaviour
             this.resetImgCurrent();
         }
     }
-
     public void closeAllPopup()
     {
         for(int i=0; i<this.panels.Count; i++)

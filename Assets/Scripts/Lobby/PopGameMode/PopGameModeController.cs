@@ -32,9 +32,11 @@ public class PopGameModeController : MonoBehaviour
     {
         this.btnBannerList[(int)GameModeType.Campaign].onClick.AddListener(()=>this.onBtnCampaignClick());
     }
-    private void onBtnCampaignClick()
+
+
+    public void onBtnCampaignClick()
     {
-        
+        this.lobbyCanvas.openPopup(LobbyCanvas.LobbyBottomButtonType.BattleStage);
     }
 
     private void onBtnBackClick()
