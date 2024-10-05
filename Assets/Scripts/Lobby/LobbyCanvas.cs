@@ -127,18 +127,18 @@ public class LobbyCanvas : MonoBehaviour
 
     public void onShipBuildClick()
     {
-
         this.panels[(int)LobbyBottomButtonType.ShipBuild].gameObject.SetActive(true);
     }
 
     public void onShipClick()
     {
-
+        this.panels[(int)LobbyBottomButtonType.ShipArrange].GetComponent<PopShipArrangeController>().setBackButtonEnable(false);
+        this.panels[(int)LobbyBottomButtonType.ShipArrange].gameObject.SetActive(true);
     }
 
     public void onBattleClick()
     {
-
+        this.panels[(int)LobbyBottomButtonType.Battle].gameObject.SetActive(true);
     }
 
     public void closePopup(LobbyBottomButtonType type)
@@ -160,7 +160,16 @@ public class LobbyCanvas : MonoBehaviour
 
         this.resetImgCurrent();
     }
+    private void _hideAllPanels()
+    {
+        for(int i=0; i<this.panels.Count; i++)
+        {
+            if(i == 0)
+                continue;
 
+            this.panels[i].SetActive(false);
+        }
+    }
     private void resetImgCurrent()
     {
         float xpos = this.buttons[0].transform.position.x;

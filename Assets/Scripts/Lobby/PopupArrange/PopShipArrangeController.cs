@@ -42,4 +42,9 @@ public class PopShipArrangeController : MonoBehaviour
             lobbyCanvas.closeAllPopup();
         }
     }
+
+    public void setBackButtonEnable(bool isenable)
+    {
+        this.btnBack.gameObject.SetActive(isenable);
+    }
 }

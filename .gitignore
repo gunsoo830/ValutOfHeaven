@@ -77,3 +77,6 @@ crashlytics-build.properties
 # build files
 build
 *.zip
+
+# mac files
+.DS_Store
