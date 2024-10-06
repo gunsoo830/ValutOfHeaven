@@ -18,6 +18,7 @@ public class LobbyCanvas : MonoBehaviour
         Battle = 6,
         ShipArrange = 7,
         BattleStage = 8,
+        StageSpecific = 9,
     }
 
     public GameObject imgCurrent;

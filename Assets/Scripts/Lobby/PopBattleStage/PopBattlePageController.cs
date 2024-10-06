@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PopBattlePageController : MonoBehaviour
 {
+    public GameObject pnStageSpecific;
     public Button btnBack;
     public List<Button> btnStageList;
     // Start is called before the first frame update
@@ -20,6 +21,8 @@ public class PopBattlePageController : MonoBehaviour
                 this.btnStageList[i].onClick.AddListener(()=>this.onBtnStageClick(temp));
             }
         }
+
+        this.initStageStatus(new List<bool> { false , true, true, true });
     }
 
     // Update is called once per frame
@@ -34,7 +37,8 @@ public class PopBattlePageController : MonoBehaviour
     }
     private void onBtnStageClick(int index)
     {
-        Debug.Log(index);
+        if(!!this.pnStageSpecific)
+            this.pnStageSpecific.SetActive(true);
     }
 
     public void initStageStatus(List<bool> isStageClearList)
