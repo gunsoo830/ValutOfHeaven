@@ -1,20 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D.IK;
 
-public class LobbyCamera : CameraController
+public class LoadingSceneCamera : CameraController
 {
-    private LobbyCanvas lobbyCanvas;
-
+    private LoadingCanvas _loadingCanvas;
 
     // Start is called before the first frame update
-    protected void Start()
+    void Start()
     {
-        base.Start();
         if(!!this.Canvas)
         {
-            this.lobbyCanvas = Canvas.GetComponent<LobbyCanvas>();
+            this._loadingCanvas = GameObject.FindAnyObjectByType<LoadingCanvas>();
             this.setScreenResolution();
         }
     }
@@ -29,10 +26,10 @@ public class LobbyCamera : CameraController
     {
         Debug.Log("Width : " + Screen.width + " " + "Height : " + Screen.height);
 
-        List<GameObject> panelList = this.lobbyCanvas.getPanelList();
-        if(panelList.Count > 0)
+        List<GameObject> panelList = this._loadingCanvas.getPanelList();
+        if (panelList.Count > 0)
         {
-            for(int i=0; i<panelList.Count; i++) 
+            for (int i = 0; i < panelList.Count; i++)
             {
                 if (!!panelList[i])
                 {
