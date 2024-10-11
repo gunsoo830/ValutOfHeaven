@@ -9,12 +9,16 @@ public class InitSceneController : MonoBehaviour
     void Start()
     {
         this.sceneManager = GameObject.FindAnyObjectByType<VOHSceneManager>();
-        sceneManager.ChangeSceneByName("LobbyScene");
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void onBtnGameStartClick()
+    {
+        this.sceneManager.ChangeSceneByName("LobbyScene");
     }
 }

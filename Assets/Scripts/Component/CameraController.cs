@@ -6,6 +6,7 @@ using UnityEngine.U2D.IK;
 public class CameraController : MonoBehaviour
 {
     public GameObject Canvas;
+    public List<GameObject> panels;
     public int defaultPixelPerUnits = 100;
     public int defaultScreenWidth = 1920;
     public int defaultScreenHeight = 1080;
@@ -22,5 +23,21 @@ public class CameraController : MonoBehaviour
     void Update()
     {
 
+    }
+
+    protected void _setCanvasResolution()
+    {
+        for(int i=0; i<this.panels.Count; i++)
+        {
+            if (this.panels[i] != null)
+            {
+                float ratio = (float)Screen.height / this.defaultScreenHeight;
+                Vector3 resizedScale = this.panels[i].transform.localScale;
+                resizedScale.y = ratio;
+                resizedScale.x = ratio;
+
+                this.panels[i].transform.localScale = resizedScale;
+            }
+        }
     }
 }
