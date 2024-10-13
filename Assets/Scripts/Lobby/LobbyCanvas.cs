@@ -21,7 +21,7 @@ public class LobbyCanvas : MonoBehaviour
         StageSpecific = 9,
     }
 
-    public GameObject imgCurrent;
+    public Image imgCurrent;
     public List<GameObject> panels;
     public List<Button> buttons;
     public float bottomMenuMovePerSec = 1;
@@ -35,7 +35,7 @@ public class LobbyCanvas : MonoBehaviour
     void Start()
     {
         if(!!imgCurrent)
-            imgCurrent.SetActive(false);
+            imgCurrent.gameObject.SetActive(false);
 
         if(buttons.Count > 0)
         {
@@ -51,22 +51,42 @@ public class LobbyCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isBottomMenuMove)
-        {
-            float gap = this.bottomMenuMoveDistance / this.bottomMenuMovePerSec * Time.deltaTime;
-            Vector3 movePos = this.getRectPosition(this.imgCurrent.gameObject);
-            movePos.x += gap;
-            
-            Vector3 targetPos = this.getRectPosition(this.buttons[this.currBottomMenuIndex].gameObject);
-            if(this.bottomMenuMoveDistance > 0 && movePos.x > targetPos.x || this.bottomMenuMoveDistance < 0 && movePos.x < targetPos.x)
-            {
-                movePos.x = targetPos.x;
-                this.isBottomMenuMove = false;
-            }
-
-            this.setRectPosition(movePos, this.imgCurrent.gameObject);
-        }
+        // if(isBottomMenuMove)
+        // {
+        //     float gap = this.bottomMenuMoveDistance / this.bottomMenuMovePerSec * Time.deltaTime;
+        //     Vector3 movePos = this.getRectPosition(this.imgCurrent.gameObject);
+        //     movePos.x += gap;
+        //     
+        //     Vector3 targetPos = this.getRectPosition(this.buttons[this.currBottomMenuIndex].gameObject);
+        //     if(this.bottomMenuMoveDistance > 0 && movePos.x > targetPos.x || this.bottomMenuMoveDistance < 0 && movePos.x < targetPos.x)
+        //     {
+        //         movePos.x = targetPos.x;
+        //         this.isBottomMenuMove = false;
+        //     }
+        //
+        //     this.setRectPosition(movePos, this.imgCurrent.gameObject);
+        // }
     }
+
+    private IEnumerator StartMoveBottomMenu(int targetIndex)
+    {
+        Vector3 startPosition = this.imgCurrent.rectTransform.anchoredPosition;
+        Vector3 targetPosition = this.buttons[targetIndex].targetGraphic.rectTransform.anchoredPosition;
+        float elapsedTime = 0;
+        float moveDuration = 0.3f;
+
+        while (elapsedTime < moveDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / moveDuration;
+            this.imgCurrent.rectTransform.anchoredPosition = Vector3.Lerp(startPosition, targetPosition, t);
+            yield return null;
+        }
+
+        this.imgCurrent.rectTransform.anchoredPosition = targetPosition;
+        this.currBottomMenuIndex = targetIndex;
+    }
+
 
     private void onButtonClick(int type)
     {
@@ -76,18 +96,27 @@ public class LobbyCanvas : MonoBehaviour
             return;   
 
         // move imgCurrent
-        bool isActive = this.imgCurrent.activeInHierarchy;
-        if(!isActive)
-            this.imgCurrent.SetActive(true);
+        bool isActive = this.imgCurrent.gameObject.activeInHierarchy;
 
         this.isBottomMenuMove = true;
         this.bottomMenuMoveDistance = -(this.getRectPosition(this.imgCurrent.gameObject).x - this.getRectPosition(this.buttons[type].gameObject).x);
+        if (isActive)
+        {
+            StartCoroutine(StartMoveBottomMenu(type));     
+        }
+        else
+        {
+            imgCurrent.rectTransform.anchoredPosition = buttons[type].targetGraphic.rectTransform.anchoredPosition;
+            this.imgCurrent.gameObject.SetActive(true);
+        }
+       
+
 
         // set imgCurrent Text.
         Text imgCurrText = this.imgCurrent.GetComponentInChildren<Text>();
         Text buttonText = this.buttons[this.currBottomMenuIndex].transform.GetChild(0).GetComponent<Text>();
 
-        imgCurrText.text = buttonText.text;
+        //imgCurrText.text = buttonText.text;
     }
     private Vector3 getRectPosition(GameObject gameObject)
     {
@@ -135,12 +164,14 @@ public class LobbyCanvas : MonoBehaviour
     public void onShipClick()
     {
         this.panels[(int)LobbyBottomButtonType.ShipArrange].GetComponent<PopShipArrangeController>().setBackButtonEnable(false);
+
         this.panels[(int)LobbyBottomButtonType.ShipArrange].gameObject.SetActive(true);
     }
 
     public void onBattleClick()
     {
         this.panels[(int)LobbyBottomButtonType.Battle].gameObject.SetActive(true);
+
     }
 
     public void openPopup(LobbyBottomButtonType type)
@@ -179,7 +210,7 @@ public class LobbyCanvas : MonoBehaviour
     {
         float xpos = this.buttons[0].transform.position.x;
         this.imgCurrent.transform.position = new Vector3(xpos, this.imgCurrent.transform.position.y);
-        this.imgCurrent.SetActive(false);
+        this.imgCurrent.gameObject.SetActive(false);
     }
 
     public List<GameObject> getPanelList()

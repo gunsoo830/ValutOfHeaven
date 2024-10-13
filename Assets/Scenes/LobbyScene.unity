@@ -4138,9 +4138,9 @@ MonoBehaviour:
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4206,7 +4206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebc83696707a03408b6fa67dd28ce77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imgCurrent: {fileID: 1577827398}
+  imgCurrent: {fileID: 1577827400}
   panels:
   - {fileID: 90190226}
   - {fileID: 0}
@@ -11317,7 +11317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1176855630
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15537,6 +15537,7 @@ GameObject:
   - component: {fileID: 1577827399}
   - component: {fileID: 1577827401}
   - component: {fileID: 1577827400}
+  - component: {fileID: 1577827402}
   m_Layer: 5
   m_Name: imgCurrent
   m_TagString: Untagged
@@ -15602,6 +15603,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577827398}
   m_CullTransparentMesh: 1
+--- !u!114 &1577827402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577827398}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &1583484236
 GameObject:
   m_ObjectHideFlags: 0
@@ -20876,6 +20890,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1577827399}
   - {fileID: 810637122}
   - {fileID: 1753338734}
   - {fileID: 598081766}
@@ -20883,7 +20898,6 @@ RectTransform:
   - {fileID: 1355484087}
   - {fileID: 702082876}
   - {fileID: 1045125012}
-  - {fileID: 1577827399}
   m_Father: {fileID: 90190227}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
