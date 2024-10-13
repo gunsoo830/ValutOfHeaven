@@ -26,5 +26,10 @@ public class PopStageSpecificController : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    public void OnBtnStageClick()
+    {
+        GameObject.FindAnyObjectByType<VOHSceneManager>().ChangeSceneByName("BattleScene");
+    }
+
     //todo 나중에 데이터에서 스테이지 정보 받아와서 버튼들 세팅하자...
 }

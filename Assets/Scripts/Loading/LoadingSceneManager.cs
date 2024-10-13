@@ -9,8 +9,7 @@ public class LoadingSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this._sceneManager = GameObject.FindAnyObjectByType<VOHSceneManager>();
-        this._sceneManager.LoadNextScene();
+        VOHSceneManager.instance.LoadNextScene();
 
         this.loadingCanvas = GameObject.FindAnyObjectByType<LoadingCanvas>();
     }

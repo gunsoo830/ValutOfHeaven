@@ -134,8 +134,8 @@ public class LobbyCanvas : MonoBehaviour
 
     public void onShipClick()
     {
-        this.panels[(int)LobbyBottomButtonType.ShipArrange].GetComponent<PopShipArrangeController>().setBackButtonEnable(false);
         this.panels[(int)LobbyBottomButtonType.ShipArrange].gameObject.SetActive(true);
+        this.panels[(int)LobbyBottomButtonType.ShipArrange].GetComponent<PopShipArrangeController>().setHomeButtonEnable(false);
     }
 
     public void onBattleClick()

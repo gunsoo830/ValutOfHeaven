@@ -46,8 +46,8 @@ public class VOHSceneManager : MonoBehaviour
     }
     public void ChangeSceneByName(string name)
     {
-        this.ChangeToLoadingScene();
         this._nextScene = name;
+        this.ChangeToLoadingScene();
     }
 
     public void ChangeToLoadingScene()

@@ -23,7 +23,7 @@ public class LobbyManager : MonoBehaviour
     {
         this._initBgmSourcePath();
 
-        this.soundManager = GameObject.FindAnyObjectByType<SoundManager>();
+        this.soundManager = SoundManager.instance;
         if (this.soundManager != null)
             soundManager.playSound(this.bgmSourcePath[(int)BGM_LIST.LOBBY], SoundManager.SoundType.Bgm, true);
     }

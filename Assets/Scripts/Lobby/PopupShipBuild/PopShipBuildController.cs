@@ -45,7 +45,7 @@ public class PopShipBuildController : MonoBehaviour
 
     private void onBtnFormationClick()
     {
-        this.pnShipArrange.GetComponent<PopShipArrangeController>().setBackButtonEnable(true);
         this.pnShipArrange.SetActive(true);
+        this.pnShipArrange.GetComponent<PopShipArrangeController>().setHomeButtonEnable(true);
     }
 }

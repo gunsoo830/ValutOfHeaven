@@ -43,8 +43,8 @@ public class PopShipArrangeController : MonoBehaviour
         }
     }
 
-    public void setBackButtonEnable(bool isenable)
+    public void setHomeButtonEnable(bool isenable)
     {
-        this.btnBack.gameObject.SetActive(isenable);
+        this.btnHome.gameObject.SetActive(isenable);
     }
 }
