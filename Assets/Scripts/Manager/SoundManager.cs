@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : SingleToneBehaviour<SoundManager>
 {
     public enum SoundType
     {
@@ -13,10 +13,10 @@ public class SoundManager : MonoBehaviour
         Count,
     }
 
-    public static SoundManager instance;
+    //public static SoundManager instance;
 
     private Dictionary<string, AudioClip> dicAudio = new Dictionary<string, AudioClip>();
-    private List<GameObject> soundObjectList;
+    [SerializeField] private List<GameObject> soundObjectList;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,20 +29,9 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    private void Awake()
+    protected override void Awake()
     {
-        if(instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-
+        base.Awake();
         this.initSoundObject();
     }
 

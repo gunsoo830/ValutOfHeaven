@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : SingleToneBehaviour<PlayerManager> 
 {
-    private static PlayerManager instance = null;
+    //private static PlayerManager instance = null;
 
 
     // Start is called before the first frame update
@@ -20,18 +20,9 @@ public class PlayerManager : MonoBehaviour
         
     }
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance != null && this != instance)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
+        base.Awake();
+        
     }
 }

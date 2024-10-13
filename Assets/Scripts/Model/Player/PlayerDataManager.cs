@@ -19,7 +19,7 @@ public class PlayerDataManager
 
     private PlayerDataManager() { }
 
-    // todo Server ¿¡¼­ µ¥ÀÌÅÍ ¹Ş¾Æ¼­ ¼¼ÆÃÇÏ¸é µÉ µí?
+    // todo Server ì—ì„œ ë°ì´í„° ë°›ì•„ì„œ ì„¸íŒ…í•˜ë©´ ë  ë“¯?
     public void setUnitListByID(List<string> idList)
     {
         for(int i = 0; i < idList.Count; i++)

@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class VOHSceneManager : MonoBehaviour
+public class VOHSceneManager : SingleToneBehaviour<VOHSceneManager> 
 {
-    public static VOHSceneManager instance;
 
-    private string _nextScene;
-    private string _currSceneName;
+    [SerializeField] private string _nextScene;
+    [SerializeField] private string _currSceneName;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,19 +21,15 @@ public class VOHSceneManager : MonoBehaviour
         
     }
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
+        base.Awake();
+        
+    }
 
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 
     public void LoadNextScene()
