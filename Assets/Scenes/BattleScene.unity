@@ -192,6 +192,26 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 2873074e2fe644ae69c6ea436bddb0fb, type: 3}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: shipType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: turnSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: _currHealth
+      value: 2.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: attackDamage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7808072837041397519, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.23
@@ -374,7 +394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e46b3caffb10e42b0d90a0bf330599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickTimeBySeconds: 60
+  tickTimeBySeconds: 1
+  isBattleStart: 0
 --- !u!1 &440318074
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +640,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ff9ff1823195c41a7b8d5620a3d756dd, type: 3}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: maxHealth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: turnSpeed
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: attackDamage
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7808072837041397519, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.06
@@ -662,6 +695,10 @@ PrefabInstance:
     - target: {fileID: 8205786422325420167, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: m_Name
       value: ShipTuyenQuang
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205786422325420167, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1013,8 +1050,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1568849538}
     m_Modifications:
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: maxHealth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: turnSpeed
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: attackDamage
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7808072837041397519, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: m_LocalPosition.x
