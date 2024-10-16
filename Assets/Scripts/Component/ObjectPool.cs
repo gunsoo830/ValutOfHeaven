@@ -13,7 +13,7 @@ public class ObjectPool : MonoBehaviour
     private List<GameObject> _objectHolders = new List<GameObject>();
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         this._initObjectPool();
     }
@@ -26,7 +26,7 @@ public class ObjectPool : MonoBehaviour
             this._addSinglePool();
         }
     }
-    private void _addSinglePool()
+    protected virtual void _addSinglePool()
     {
         int index = this.poolObjectList.Count - 1;
         GameObject holder = new GameObject(this.poolObjectList[index].name);
@@ -38,21 +38,22 @@ public class ObjectPool : MonoBehaviour
 
         this._expandPool(this.poolObjectList.Count - 1);
     }
-    private void _resetPoolObject(int targetIndex, GameObject obj)
+    protected virtual void _resetPoolObject(int targetIndex, GameObject obj)
     {
+        obj.transform.SetParent(this._objectHolders[targetIndex].transform);    
         obj.SetActive(false);
-        obj.transform.SetParent(this._objectHolders[targetIndex].transform);
+
     }
 
     // main
-    protected void _expandPool(int targetIndex)
+    protected virtual void _expandPool(int targetIndex)
     {
         for(int i=0; i<this.defaultIncreasePoolSize; i++)
         {
             this._objectPool[targetIndex].Enqueue(this._createObject(targetIndex));
         }
     }
-    private GameObject _createObject(int targetIndex)
+    protected virtual GameObject _createObject(int targetIndex)
     {
         GameObject retVal = Instantiate(this.poolObjectList[targetIndex]);
         this._resetPoolObject(targetIndex, retVal);

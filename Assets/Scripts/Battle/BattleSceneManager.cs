@@ -5,6 +5,7 @@ using UnityEngine;
 public class BattleSceneManager : MonoBehaviour
 {
     public BattleStartPanel panelBegin;
+    public GameObject posBullet;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,5 +28,10 @@ public class BattleSceneManager : MonoBehaviour
         this.panelBegin.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         this.panelBegin.PlayGameBegin();
+    }
+
+    public GameObject getPosBullet()
+    {
+        return this.posBullet;
     }
 }

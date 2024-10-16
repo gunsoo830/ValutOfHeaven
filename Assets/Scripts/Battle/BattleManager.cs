@@ -27,6 +27,8 @@ public class BattleManager : MonoBehaviour
 
     public delegate void TickEvent(float dt, TickEvent evtType);
 
+    private BattleSceneManager _battleSceneMgr;
+
     [Header("Battle Setting")]
     public float tickTimeBySeconds = 60;
     public bool isBattleStart = false;
@@ -37,7 +39,7 @@ public class BattleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        this._battleSceneMgr = GameObject.FindAnyObjectByType<BattleSceneManager>();
     }
 
     private void Awake()
@@ -116,6 +118,14 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public int getRandomTargetIndex(BattleShipType type)
+    {
+        if (this._battleShipList[(int)type].Count < 1)
+            return -1;
+
+        return Random.Range(0, this._battleShipList[(int)type].Count);
+    }
+
     // Destroy
     public void destroyShip(BattleShip ship, BattleShipType shipType)
     {
@@ -140,5 +150,15 @@ public class BattleManager : MonoBehaviour
 
         if (loseType != BattleShipType.None)
             this.StopBattle();
+    }
+
+    //
+    public BattleShip getBattleShip(BattleShipType shipType, int index)
+    {
+        return this._battleShipList[(int)shipType][index];
+    }
+    public BattleSceneManager getBattleSceneMgr()
+    {
+        return this._battleSceneMgr;
     }
 }

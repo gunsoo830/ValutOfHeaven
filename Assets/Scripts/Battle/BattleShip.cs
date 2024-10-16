@@ -1,5 +1,6 @@
 using System;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattleShip : MonoBehaviour
@@ -16,18 +17,21 @@ public class BattleShip : MonoBehaviour
     public float attackDamage = 1.0f;
     public float defenseVal = 1.0f;
 
-    private BattleManager _battleManager;
-
     [SerializeField, ReadOnly]
     private float _currHealth = 0f;
 
+    private int _targetIndex = -1;
     private float _turnValPerTick = 0f;
     private float _currTickVal = 0f;
     private float _maxTick = 0f;
 
     private bool _isTurnGaugeFull = false;
 
+    private BattleManager _battleManager;
     private BattleEffectPool _effectPool;
+    private BattleBulletPool _bulletPool;
+
+    private Projectile _projectile;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -43,7 +47,8 @@ public class BattleShip : MonoBehaviour
         this.setHealth();
         this.setTurnMeter();
 
-        this._effectPool = GameObject.FindAnyObjectByType < BattleEffectPool>();
+        this._effectPool = GameObject.FindAnyObjectByType<BattleEffectPool>();
+        this._bulletPool = GameObject.FindAnyObjectByType<BattleBulletPool>();
     }
 
     // Update is called once per frame
@@ -92,27 +97,35 @@ public class BattleShip : MonoBehaviour
     {
         this._isTurnGaugeFull = true;
         this.setTurnMeter(this._maxTick);
-        this._attackShip();
+        this._fireProjectile();
     }
 
     //Attack
-    private void _attackShip()
+    protected virtual void _fireProjectile()
     {
-        Debug.Log("Ship Attack!!");
-        //todo function ±¸Çö
+        this._targetIndex = this._battleManager.getRandomTargetIndex(this._getTargetType());
+        this._createProjectile();
 
-        BattleManager.BattleShipType targetType = BattleManager.BattleShipType.Enemy;
-        if (this.shipType == BattleManager.BattleShipType.Enemy)
-            targetType = BattleManager.BattleShipType.Player;
+        GameObject from = this.gameObject;
+        GameObject to = this._battleManager.getBattleShip(this._getTargetType(), this._targetIndex).gameObject;
 
-        this._battleManager.attackShip(this.attackDamage, targetType, BattleManager.BattleShipAttackType.Random);
+        this._projectile.setProjectileInfo(from, to, 0.5f);
+        this._projectile.setMoveEndCallFunc(this._attackShip);
 
+        this._projectile.gameObject.SetActive(true);
+        this._projectile.Fire();
+    }
+    private void _attackShip()
+    {   
+        this._battleManager.attackShip(this.attackDamage, this._getTargetType(), BattleManager.BattleShipAttackType.Single, this._targetIndex);
         this._onAttackFinish();
     }
     private void _onAttackFinish()
     {
+        this._bulletPool.returnPoolObject(0, this._projectile.gameObject);
         this._isTurnGaugeFull = false;
         this._currTickVal = 0f;
+        this.setTurnMeter();
     }
 
     // Hit
@@ -138,5 +151,21 @@ public class BattleShip : MonoBehaviour
     {
         this._battleManager.destroyShip(this, this.shipType);
         Destroy(this.gameObject);
+    }
+
+    // Util
+    protected virtual void _createProjectile()
+    {
+        this._projectile = this._bulletPool.getPoolObject(0).GetComponent<Projectile>();
+        Transform parent = this._battleManager.getBattleSceneMgr().getPosBullet().transform;
+        this._projectile.transform.SetParent(parent);
+    }
+    private BattleManager.BattleShipType _getTargetType()
+    {
+        BattleManager.BattleShipType targetType = BattleManager.BattleShipType.Enemy;
+        if (this.shipType == BattleManager.BattleShipType.Enemy)
+            targetType = BattleManager.BattleShipType.Player;
+
+        return targetType;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ParticleController : MonoBehaviour
 {
     public delegate void OnParticlePlayFinish();
-    public ParticleSystemStopAction particleFinishType = ParticleSystemStopAction.Disable;
+    public ParticleSystemStopAction particleFinishType = ParticleSystemStopAction.Callback;
 
     private ParticleSystem _pSystem;
     private OnParticlePlayFinish _particleFinishCallFunc;
@@ -14,10 +14,10 @@ public class ParticleController : MonoBehaviour
     {
         this._pSystem = this.GetComponent<ParticleSystem>();
         var control = this._pSystem.main;
-        control.stopAction = ParticleSystemStopAction.Disable;
+        control.stopAction = ParticleSystemStopAction.Callback;
     }
 
-    protected void OnDisable()
+    protected void OnParticleSystemStopped()
     {
         if (this.transform.parent == null)
             return;
@@ -25,6 +25,7 @@ public class ParticleController : MonoBehaviour
         switch (this.particleFinishType)
         {
             case ParticleSystemStopAction.Disable:
+            case ParticleSystemStopAction.Callback:
                 this._onParticleFinish();
                 break;
             default:
@@ -32,7 +33,7 @@ public class ParticleController : MonoBehaviour
                 break;
         }
 
-        if (this._particleFinishCallFunc.GetInvocationList().Length > 0)
+        if (this._particleFinishCallFunc != null)
             this._particleFinishCallFunc();
     }
 
