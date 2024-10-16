@@ -27,8 +27,10 @@ public class BattleShip : MonoBehaviour
 
     private bool _isTurnGaugeFull = false;
 
+    private BattleEffectPool _effectPool;
+
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         this._turnValPerTick = (float)Math.Round((this.turnSpeed * 0.07 / 100), 2);
         this._maxTick = (float)Math.Round((1 / this._turnValPerTick), 2);
@@ -40,6 +42,8 @@ public class BattleShip : MonoBehaviour
 
         this.setHealth();
         this.setTurnMeter();
+
+        this._effectPool = GameObject.FindAnyObjectByType < BattleEffectPool>();
     }
 
     // Update is called once per frame
@@ -112,13 +116,21 @@ public class BattleShip : MonoBehaviour
     }
 
     // Hit
-    public void getDamage(float damage)
+    public virtual void getDamage(float damage)
     {
         this._currHealth -= damage;
         this.setHealth();
+        this._playHitFx();
 
         if (this._currHealth < 0f)
             this._onShipDestroy();
+    }
+    protected virtual void _playHitFx()
+    {
+        var effect = this._effectPool.getPoolObject(0);
+        effect.transform.SetParent(this.transform.parent);
+        effect.transform.position = this.transform.position;
+        effect.SetActive(true);
     }
 
     // Death

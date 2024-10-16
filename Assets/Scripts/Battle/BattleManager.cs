@@ -95,7 +95,6 @@ public class BattleManager : MonoBehaviour
                 this._attackRandom(attackDmg, targetShipType, 1);
                 break;
         }
-        this._battleShipList[(int)BattleShipType.Enemy][0].getDamage(attackDmg);
     }
     private void _attackSingle(float dmg, BattleShipType targetType, int targetIndex)
     {
