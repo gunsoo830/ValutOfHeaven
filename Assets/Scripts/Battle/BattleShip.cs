@@ -54,7 +54,7 @@ public class BattleShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void setHealth()
@@ -64,7 +64,7 @@ public class BattleShip : MonoBehaviour
     public void setHealth(float health)
     {
         this._currHealth = health;
-        this.HealthGauge.SetPercent((health/this.maxHealth) * 100);
+        this.HealthGauge.SetPercent((health / this.maxHealth) * 100);
     }
     public void setTurnMeter()
     {
@@ -109,14 +109,14 @@ public class BattleShip : MonoBehaviour
         GameObject from = this.gameObject;
         GameObject to = this._battleManager.getBattleShip(this._getTargetType(), this._targetIndex).gameObject;
 
-        this._projectile.setProjectileInfo(from, to, 0.5f);
-        this._projectile.setMoveEndCallFunc(this._attackShip);
+        this._projectile.setProjectileInfo(from, to, 0.2f);
+        this._projectile.setMoveEndCallFunc(this._onProjectTileHit);
 
         this._projectile.gameObject.SetActive(true);
         this._projectile.Fire();
     }
-    private void _attackShip()
-    {   
+    private void _onProjectTileHit()
+    {
         this._battleManager.attackShip(this.attackDamage, this._getTargetType(), BattleManager.BattleShipAttackType.Single, this._targetIndex);
         this._onAttackFinish();
     }

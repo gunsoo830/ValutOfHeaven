@@ -11,6 +11,10 @@ public class Projectile : MonoBehaviour
     public GameObject hitFx;
     public GameObject projectileObject;
 
+    [Space(10)]
+    [Header("Properties")]
+    public bool isHeadingRight = true;
+
     private GameObject _fireFxOb;
     private GameObject _hitFxOb;
     private GameObject _projectileOb;
@@ -20,6 +24,7 @@ public class Projectile : MonoBehaviour
     private Vector3 _fromPos;
     private Vector3 _toPos;
     private bool _isStartOnActive = false;
+    private bool _shouldFlip = false;
 
     private bool _isMove = false;
 
@@ -116,10 +121,13 @@ public class Projectile : MonoBehaviour
 
             this._elapsedTime += Time.deltaTime;
 
-            Vector3 currPos = this.transform.localPosition;
-            currPos.x = this._easeFunc(this._fromPos.x, this._toPos.x, this._elapsedTime / this._duration);
-            currPos.y = this._easeFunc(this._fromPos.y, this._toPos.y, this._elapsedTime / this._duration);
-            this.transform.localPosition = currPos;
+            if (this._elapsedTime > this._duration)
+                this._elapsedTime = this._duration;
+
+            Vector3 currPos = this.transform.position;
+            float xVal = this._easeFunc(this._fromPos.x, this._toPos.x, this._elapsedTime / this._duration);
+            float yVal = this._easeFunc(this._fromPos.y, this._toPos.y, this._elapsedTime / this._duration);
+            this.transform.position = new Vector3(xVal, yVal, currPos.z);
 
             if(this._elapsedTime >= this._duration)
             {
@@ -132,19 +140,24 @@ public class Projectile : MonoBehaviour
     // Main
     protected virtual void _onMoveStart()
     {
-        Vector3 currRot = this.transform.localEulerAngles;
-        currRot.z += this._degree;
+        Vector3 currAngle = Vector3.zero;
 
         if (!!this._fireFxOb)
         {
             this._fireFxOb.SetActive(true);
             this._fireFxOb.GetComponent<ParticleSystem>().Play();
+            currAngle = this._fireFxOb.transform.eulerAngles;
+            currAngle.x = this._degree;
+            this._fireFxOb.transform.eulerAngles = currAngle;
         }
 
         if(!!this._projectileOb)
         {
             this._projectileOb.SetActive(true);
             this._projectileOb.GetComponent<ParticleSystem>().Play();
+            currAngle = this._projectileOb.transform.eulerAngles;
+            currAngle.x = this._degree;
+            this._projectileOb.transform.eulerAngles = currAngle;
         }
     }
     protected virtual void _onMoveFinish()
@@ -165,10 +178,10 @@ public class Projectile : MonoBehaviour
 
         this._duration = duration;
         this._isStartOnActive = isStartOnActive;
-        this._fromPos = this.transform.InverseTransformPoint(from.transform.position);
-        this._toPos = this.transform.InverseTransformPoint(to.transform.position);
+        this._fromPos = from.transform.position;
+        this._toPos = to.transform.position;
         this._degree = Vector2.Angle(this._fromPos, this._toPos);
-        this._easeFunc = EasingFunction.GetEasingFunctionDerivative(easingType);
+        this._easeFunc = EasingFunction.GetEasingFunction(easingType);
     }
     public void setMoveEndCallFunc(onProjectTileMoveFinishCallFunc callback)
     {
