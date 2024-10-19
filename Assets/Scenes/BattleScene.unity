@@ -198,19 +198,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 13000
       objectReference: {fileID: 0}
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: turnSpeed
-      value: 500
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: defenseVal
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: _currHealth
-      value: 2.68
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: attackDamage
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7808072837041397519, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -394,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e46b3caffb10e42b0d90a0bf330599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickTimeBySeconds: 1
+  tickTimeBySeconds: 0.1
   isBattleStart: 0
 --- !u!1 &440318074
 GameObject:
@@ -689,11 +693,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: ff9ff1823195c41a7b8d5620a3d756dd, type: 3}
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: maxHealth
-      value: 50
+      value: 1189
       objectReference: {fileID: 0}
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: turnSpeed
-      value: 300
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: defenseVal
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: attackDamage
@@ -1178,15 +1186,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: maxHealth
-      value: 50
+      value: 9090
       objectReference: {fileID: 0}
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: turnSpeed
-      value: 200
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
+      propertyPath: defenseVal
+      value: 694
       objectReference: {fileID: 0}
     - target: {fileID: 6061481929546821972, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: attackDamage
-      value: 10
+      value: 903
       objectReference: {fileID: 0}
     - target: {fileID: 7808072837041397519, guid: a81f3f7cf6f3e464a8f70804a97b99e7, type: 3}
       propertyPath: m_LocalPosition.x

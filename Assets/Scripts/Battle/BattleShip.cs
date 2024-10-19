@@ -15,7 +15,7 @@ public class BattleShip : MonoBehaviour
     public float turnSpeed = 1.0f;
     public float maxHealth = 1.0f;
     public float attackDamage = 1.0f;
-    public float defenseVal = 1.0f;
+    public float defenseVal = 1500.0f;
 
     [SerializeField, ReadOnly]
     private float _currHealth = 0f;
@@ -131,7 +131,7 @@ public class BattleShip : MonoBehaviour
     // Hit
     public virtual void getDamage(float damage)
     {
-        this._currHealth -= damage;
+        this._currHealth -= damage * this._getDefensePercent();
         this.setHealth();
         this._playHitFx();
 
@@ -151,6 +151,12 @@ public class BattleShip : MonoBehaviour
     {
         this._battleManager.destroyShip(this, this.shipType);
         Destroy(this.gameObject);
+    }
+    
+    // Defense
+    protected float _getDefensePercent()
+    {
+        return (float) (1 - 0.85 * (1 - Math.Exp(-2 * this.defenseVal / 3000)));
     }
 
     // Util
