@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -91,7 +92,7 @@ public class BattleManager : MonoBehaviour
                 this._attackSingle(attackDmg, targetShipType, targetIndex);
                 break;
             case BattleShipAttackType.Multiple:
-                //todo ³ªÁß¿¡ ¹è¿­·Î ¹ÞÀÚ....
+                //todo ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½....
                 break;
             case BattleShipAttackType.Random:
                 this._attackRandom(attackDmg, targetShipType, 1);
@@ -148,8 +149,21 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if (loseType != BattleShipType.None)
+        if (loseType != BattleShipType.None) {
             this.StopBattle();
+            this._onBattleFinish();
+        }
+    }
+
+    private void _onBattleFinish()
+    {
+        StartCoroutine(this._goToLobby());
+    }
+    private IEnumerator _goToLobby()
+    {
+        yield return new WaitForSeconds(3.0f);
+        VOHSceneManager mgr = GameObject.FindAnyObjectByType<VOHSceneManager>();
+        mgr.ChangeSceneByName("LobbyScene");
     }
 
     //
