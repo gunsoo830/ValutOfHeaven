@@ -11,7 +11,7 @@ public class DragListener : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        
+        this.GetComponent<RectTransform>().localPosition = new Vector3(-Screen.width / 2, -Screen.height / 2);
     }
 
     // Update is called once per frame
@@ -27,6 +27,7 @@ public class DragListener : MonoBehaviour
     }
     virtual public void DragUpdate()
     {
+        Debug.Log($"Current Mouse Pos : {Input.mousePosition} ");
         this.currDragObject.setPosition(Input.mousePosition);
     }
     virtual public void DragEnd()

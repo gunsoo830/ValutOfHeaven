@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class PopShipArrangeController : MonoBehaviour
     public Button btnHome;
     private LobbyCanvas lobbyCanvas;
     private PlayerManager _playerMgr;
-    private List<GameObject> _placeHolders;
+    private List<PopShipArrangePlaceHolder> _placeHolders = new List<PopShipArrangePlaceHolder>();
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,8 @@ public class PopShipArrangeController : MonoBehaviour
 
         lobbyCanvas = GameObject.FindAnyObjectByType<LobbyCanvas>();
         this._playerMgr = GameObject.FindAnyObjectByType<PlayerManager>();
-        this._placeHolders = GameObject.FindObjectsByType<PopShipArrangePlaceHolder(FindObjectsSortMode.None) as GameObject[];
+        this._placeHolders = GameObject.FindObjectsByType<PopShipArrangePlaceHolder>(FindObjectsSortMode.None).ToList();
+        this._placeHolders.Sort((a,b) => a.name.CompareTo(b.name));
 
         this._initShipList();
     }
@@ -40,12 +42,31 @@ public class PopShipArrangeController : MonoBehaviour
     // init
     private void _initShipList()
     {
-        var shipPosList = this._playerMgr.getShipPosIndexList();
-        var shipList = this._playerMgr.getPlayerShipList();
-        for(int i=0; i<shipList.Count; i++)
+        var shipPosList = PlayerDataManager.getInstance().getShipArrangePosList();
+        var shipList = PlayerDataManager.getInstance().getPlayerShipList();
+        for(int i=0; i<shipPosList.Count; i++)
         {
-            
+            if (shipPosList[i] > -1)
+            {
+                StartCoroutine(this._loadShipAsync(shipList[i].getAssetPath(), i));
+            }
         }
+    }
+
+    // Ship
+    private IEnumerator _loadShipAsync(string assetPath, int index)
+    {
+        var req = Resources.LoadAsync<GameObject>(assetPath);
+        while(!req.isDone)
+        {
+            yield return null;
+        }
+
+        GameObject result = Instantiate<GameObject>(req.asset as GameObject);
+        result.GetComponent<PopupShipDragObject>().dragLayer = GameObject.FindAnyObjectByType<PopupShipDragListener>().gameObject;
+        result.transform.SetParent(this._placeHolders[index].transform);
+        result.transform.localScale = Vector3.one;
+        result.GetComponent<RectTransform>().localPosition = Vector3.zero;
     }
 
     private void onBtnBackClick()

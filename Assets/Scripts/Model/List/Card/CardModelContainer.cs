@@ -14,6 +14,10 @@ namespace VOHModel
 
             return instance;
         }
+        public static void reset()
+        {
+            instance = null;
+        }
 
         public const int UnitCount = 38;
 

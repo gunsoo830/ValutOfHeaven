@@ -40,7 +40,7 @@ public class PopShipArrangePlaceHolder : MonoBehaviour
         RectTransform holderTrans = this.GetComponent<RectTransform>();
         RectTransform hexaTrans = this.imgHexa.GetComponent<RectTransform>();
         Vector2 size = hexaTrans.sizeDelta;
-        Vector3 centerPos = new Vector3(1920/2 - (size.x / 2),1080/2 - (size.y / 2)) + holderTrans.localPosition + hexaTrans.localPosition;
+        Vector3 centerPos = new Vector3(Screen.width/2 - (size.x / 2), Screen.height/2 - (size.y / 2)) + holderTrans.localPosition + hexaTrans.localPosition;
 
         Rect rect = new Rect(centerPos, size);
         return rect.Contains(point);

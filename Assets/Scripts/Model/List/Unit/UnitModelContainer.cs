@@ -1,9 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace VOHModel
 {
+    public static class UnitDefines
+    {
+        public static class UnitID
+        {
+            public const string JinMu = "Unit_nomal_ad_JinMu";
+            public const string Gaiseric = "Unit_nomal_ad_Gaiseric";
+            public const string Drake = "Unit_nomal_ad_Drake";
+            public const string London = "Unit_nomal_ad_London";
+            public const string TuyenQuang = "Unit_nomal_ad_TuyenQuang";
+        }
+    }
+
     public class UnitModelContainer
     {
         private static UnitModelContainer instance = null;
@@ -14,10 +27,14 @@ namespace VOHModel
 
             return instance;
         }
+        public static void reset()
+        {
+            instance = null;
+        }
 
         public const int UnitCount = 5;
-
         private List<UnitModel> unitModels = new List<UnitModel>();
+
 
         UnitModelContainer()
         {

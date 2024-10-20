@@ -51,6 +51,7 @@ public class DragObject : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void setPosition(Vector3 pos)
     {
-        this.GetComponent<RectTransform>().localPosition = pos;
+        float gap = ( ( (float)1920 / Screen.width ) - 1 ) / 2;
+        this.GetComponent<RectTransform>().localPosition = new Vector3(pos.x * (1 + gap), pos.y * (1 + gap));
     }
 }
