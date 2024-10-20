@@ -143,9 +143,10 @@ public class LobbyCanvas : MonoBehaviour
         this.panels[(int)LobbyBottomButtonType.Battle].gameObject.SetActive(true);
     }
 
-    public void openPopup(LobbyBottomButtonType type)
+    public GameObject openPopup(LobbyBottomButtonType type)
     {
         this.panels[(int)type].gameObject.SetActive(true);
+        return this.panels[(int)type];
     }
     public void closePopup(LobbyBottomButtonType type)
     {

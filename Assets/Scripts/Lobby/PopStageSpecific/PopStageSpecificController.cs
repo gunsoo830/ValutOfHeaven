@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PopStageSpecificController : MonoBehaviour
 {
     public Button btnBack;
+    public Button btnShipArrange;
+
     private LobbyCanvas _lobbyCanvas;
 
     // Start is called before the first frame update
@@ -13,6 +15,8 @@ public class PopStageSpecificController : MonoBehaviour
     {
         this._lobbyCanvas = GameObject.FindAnyObjectByType<LobbyCanvas>();
         this.btnBack.onClick.AddListener(() => this.onBtnBackClick());
+
+        this.btnShipArrange.onClick.AddListener(()=>this.onBtnShipArrangeClick());
     }
 
     // Update is called once per frame
@@ -30,6 +34,11 @@ public class PopStageSpecificController : MonoBehaviour
     {
         GameObject.FindAnyObjectByType<VOHSceneManager>().ChangeSceneByName("BattleScene");
     }
+    private void onBtnShipArrangeClick()
+    {
+        var pop = this._lobbyCanvas.openPopup(LobbyCanvas.LobbyBottomButtonType.ShipArrange);
+        pop.GetComponent<PopShipArrangeController>().setHomeButtonEnable(false);
+    }
 
-    //todo ³ªÁß¿¡ µ¥ÀÌÅÍ¿¡¼­ ½ºÅ×ÀÌÁö Á¤º¸ ¹Þ¾Æ¿Í¼­ ¹öÆ°µé ¼¼ÆÃÇÏÀÚ...
+    //todo ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿Í¼ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 }

@@ -15,15 +15,15 @@ namespace VOHModel
             return instance;
         }
 
-        public const int UnitCount = 38;
+        public const int UnitCount = 5;
 
-        private List<UnitModel> unitModels;
+        private List<UnitModel> unitModels = new List<UnitModel>();
 
         UnitModelContainer()
         {
             for(int i=0; i<UnitCount; i++)
             {
-                UnitModel unit = new UnitModel(i, 8);
+                UnitModel unit = new UnitModel(i + 1, 10);
                 unitModels.Add(unit);
             }
         }

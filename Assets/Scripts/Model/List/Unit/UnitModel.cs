@@ -16,6 +16,7 @@ namespace VOHModel
 
         // data
         private string id = "";
+        private int level = -1;
         private string assetPath = "";
         private float assetScale = 1f;
         private float hp = 0f;
@@ -23,6 +24,7 @@ namespace VOHModel
         private float defense = 0f;
         private float moveSpeed = 0f;
         private string weapon = "";
+        private string card_id = "";
 
         UnitModel()
         {
@@ -53,13 +55,15 @@ namespace VOHModel
         protected void applyData()
         {
             this.id = ExcelParser.getDataWithType<string>(ref excelData, 0, 0);
-            this.assetPath = ExcelParser.getDataWithType<string>(ref excelData, 0, 1);
-            this.assetScale = ExcelParser.getDataWithType<float>(ref excelData, 0, 2);
-            this.hp = ExcelParser.getDataWithType<float>(ref excelData, 0, 3);
-            this.mp = ExcelParser.getDataWithType<float>(ref excelData, 0, 4);
-            this.defense = ExcelParser.getDataWithType<float>(ref excelData, 0, 5);
-            this.moveSpeed = ExcelParser.getDataWithType<float>(ref excelData, 0, 6);
-            this.weapon = ExcelParser.getDataWithType<string>(ref excelData, 0, 7);
+            this.level = ExcelParser.getDataWithType<int>(ref excelData, 0, 1);
+            this.assetPath = ExcelParser.getDataWithType<string>(ref excelData, 0, 2);
+            this.assetScale = ExcelParser.getDataWithType<float>(ref excelData, 0, 3);
+            this.hp = ExcelParser.getDataWithType<float>(ref excelData, 0, 4);
+            this.mp = ExcelParser.getDataWithType<float>(ref excelData, 0, 5);
+            this.defense = ExcelParser.getDataWithType<float>(ref excelData, 0, 6);
+            this.moveSpeed = ExcelParser.getDataWithType<float>(ref excelData, 0, 7);
+            this.weapon = ExcelParser.getDataWithType<string>(ref excelData, 0, 8);
+            this.card_id = ExcelParser.getDataWithType<string>(ref excelData, 0, 9);
         }
 
         public int getRow()

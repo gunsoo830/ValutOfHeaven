@@ -14,17 +14,20 @@ public class PlayerDataManager
         return instance;
     }
 
-    private List<UnitModel> unitModelList;
-    private List<CardModel> cardModelList;
+    private List<UnitModel> unitModelList = new List<UnitModel>();
+    private List<CardModel> cardModelList = new List<CardModel>();
 
     private PlayerDataManager() { }
 
-    // todo Server ¿¡¼­ µ¥ÀÌÅÍ ¹Þ¾Æ¼­ ¼¼ÆÃÇÏ¸é µÉ µí?
+    // todo Server ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ï¿½?
     public void setUnitListByID(List<string> idList)
     {
         for(int i = 0; i < idList.Count; i++)
         {
             UnitModel model = UnitModelContainer.getInstance().findModelByID(idList[i]);
+            if(this.hasModel(model))
+                continue;
+
             this.unitModelList.Add(model);
         }
     }
@@ -32,6 +35,19 @@ public class PlayerDataManager
     public void addUnitByID(string id)
     {
         UnitModel model = UnitModelContainer.getInstance().findModelByID(id);
+        if(this.hasModel(model))
+            return;
+
         this.unitModelList.Add(model);
+    }
+
+    public bool hasModel(UnitModel model)
+    {
+        return this.unitModelList.FindIndex((m) => m == model) > -1;
+    }
+
+    public List<UnitModel> getPlayerShipList()
+    {
+        return this.unitModelList;
     }
 }
