@@ -47,13 +47,13 @@ public class PopupShipDragListener : DragListener
             if(this.placeHolders[i].IsDragTarget())
                 continue;
 
-            if(this.placeHolders[i].checkDragHit(Input.mousePosition) == true)
+            if(this.placeHolders[i].checkDragHit(this._getMousePosition()) == true)
             {
                 this.placeHolders[i].playDragOver();
                 continue;
             }
 
-            if(this.placeHolders[i].checkDragHit(Input.mousePosition) == false){
+            if(this.placeHolders[i].checkDragHit(this._getMousePosition()) == false){
                 this.placeHolders[i].playDragNormal();
                 continue;
             }
