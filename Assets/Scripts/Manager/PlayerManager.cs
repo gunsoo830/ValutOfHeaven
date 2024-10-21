@@ -39,4 +39,9 @@ public class PlayerManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+
+    private void OnDestroy()
+    {
+        PlayerDataManager.reset();
+    }
 }
