@@ -3,20 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static config.SoundConfig;
 
 public class SoundManager : MonoBehaviour
 {
-    public enum SoundType
-    {
-        Bgm = 0,
-        Effect,
-        Count,
-    }
+
 
     public static SoundManager instance;
 
     private Dictionary<string, AudioClip> dicAudio = new Dictionary<string, AudioClip>();
-    private List<GameObject> soundObjectList;
+    [SerializeField]private List<GameObject> soundObjectList;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +40,8 @@ public class SoundManager : MonoBehaviour
         }
 
         this.initSoundObject();
+        _initBgmSourcePath();
+
     }
 
     private void initSoundObject()
@@ -94,4 +92,8 @@ public class SoundManager : MonoBehaviour
 
         return this.dicAudio[path];
     }
+    
+    
+
+
 }

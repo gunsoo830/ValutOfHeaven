@@ -9720,7 +9720,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4736024230581622}
   - component: {fileID: 114878710379795836}
-  - component: {fileID: 54212628334827884}
   - component: {fileID: 114409874962607200}
   - component: {fileID: 199866926003231802}
   - component: {fileID: 198971252353732916}
@@ -9864,33 +9863,6 @@ MonoBehaviour:
       m_NumAlphaKeys: 3
   applyChanges: 0
   Keep_applyChanges: 0
---- !u!54 &54212628334827884
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796749963149706}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &114409874962607200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9898,7 +9870,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796749963149706}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 538d28f745155f34fba977c5c1026e39, type: 3}
   m_Name: 
@@ -9906,7 +9878,7 @@ MonoBehaviour:
   impactPrefab: {fileID: 1879272669879180, guid: 5a84f048d347cff428bc5285b6f3863e, type: 3}
   explosionPrefab: {fileID: 0}
   thrust: 0
-  thisRigidbody: {fileID: 54212628334827884}
+  thisRigidbody: {fileID: 0}
   particleKillGroup: {fileID: 0}
   LookRotation: 1
   Missile: 0

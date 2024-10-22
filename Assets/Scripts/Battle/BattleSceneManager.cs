@@ -1,15 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static config.SoundConfig;
 
 public class BattleSceneManager : MonoBehaviour
 {
     public BattleStartPanel panelBegin;
     public GameObject posBullet;
+    
+    private SoundManager soundManager => SoundManager.instance;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
         this.onEnterGame();
+        
+        if (this.soundManager != null)
+            soundManager.playSound(getSoundPath((Int32)BGM_LIST.BATTLE_STAGE), SoundType.Bgm, true);
     }
 
     // Update is called once per frame
