@@ -17,6 +17,8 @@ public class PlayerManager : MonoBehaviour
         // Test
         PlayerDataManager.getInstance().addUnitByID(UnitDefines.UnitID.JinMu, 0);
         PlayerDataManager.getInstance().addUnitByID(UnitDefines.UnitID.TuyenQuang, 1);
+
+        Application.quitting += () => PlayerDataManager.reset();
     }
 
     // Update is called once per frame
@@ -38,10 +40,5 @@ public class PlayerManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        PlayerDataManager.reset();
     }
 }
