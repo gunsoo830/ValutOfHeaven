@@ -8,6 +8,7 @@ public class BattleSceneManager : MonoBehaviour
 {
     public BattleStartPanel panelBegin;
     public GameObject posBullet;
+    public PreBattleDialoguePanel panelDialogue;
     
     private SoundManager soundManager => SoundManager.instance;
     
@@ -15,23 +16,22 @@ public class BattleSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.onEnterGame();
-        
         if (this.soundManager != null)
             soundManager.playSound(getSoundPath((Int32)BGM_LIST.BATTLE_STAGE), SoundType.Bgm, true);
+        this.onEnterGame();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public void onEnterGame()
     {
-        StartCoroutine(this._startBeginAnimation());
+        panelDialogue.startBattleDialogue(1, startBeginAnimation);
     }
 
+    private void startBeginAnimation()
+    {
+        StartCoroutine(this._startBeginAnimation());
+    }
     IEnumerator _startBeginAnimation()
     {
         this.panelBegin.gameObject.SetActive(true);
