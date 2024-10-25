@@ -651,7 +651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &351500044
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2184,6 +2184,7 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   panels:
   - {fileID: 825789756}
+  - {fileID: 351500043}
   defaultPixelPerUnits: 100
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
